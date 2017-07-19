@@ -13,19 +13,13 @@ h1{
 }
 
 div{
-  /*border: 2px solid blue;*/
   justify-content: center;
 }
 
 form{
-  /*border: 2px solid black;*/
   display: flex;
   align-items: center;
 }
-
-/*input{
-  align-self: center;
-}*/
 
 .column{
   display: flex;
@@ -60,4 +54,10 @@ form{
   border: 3px inset #f59d16;
   padding: 1em;
   margin: 1em;
+}
+
+.logout{
+  position: absolute;
+  right: 1em;
+  top: 1em;
 }

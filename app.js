@@ -19,13 +19,21 @@ app.use(session({
 
 app.get('/', (req, res) =>
   {
-    console.log('user id', req.session.userid)
     if (req.session.userid){
-      res.render('home.ejs')
+      res.redirect('/home')
     } else {
       res.render('login.ejs')
     }
   })
+
+app.get('/home', (req, res) => {
+  res.render('home.ejs')
+})
+
+app.get('/logout', (req, res) => {
+  req.session.destroy()
+  res.redirect('/')
+})
 
 app.get('/signup', (req, res) => {
   res.render('signup')
