@@ -1,0 +1,25 @@
+{
+  "name": "movie-search-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js",
+    "schema": "psql < database/schema.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maighdlyn/movieSearchEngine.git"
+  },
+  "author": "Emma Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Maighdlyn/movieSearchEngine/issues"
+  },
+  "homepage": "https://github.com/Maighdlyn/movieSearchEngine#readme",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.3"
+  }
+}
