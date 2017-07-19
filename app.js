@@ -6,7 +6,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.render('main')
+  // res.render('home')
+  res.render('login.ejs')
 })
 
 app.get('/history', (req, res) => {
