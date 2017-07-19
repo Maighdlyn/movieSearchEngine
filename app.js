@@ -1,13 +1,44 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const queries = require('./database/queries.js')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(cookieParser())
+app.use(session({
+  secret: "Don't tell",
+  cookie: {
+    maxAge: 30 * 60 * 1000 //30 minutes
+  }
+}))
 
-app.get('/', (req, res) => {
-  // res.render('home')
-  res.render('login.ejs')
+app.get('/', (req, res) =>
+  {
+    console.log('user id', req.session.userid)
+    if (req.session.userid){
+      res.render('home.ejs')
+    } else {
+      res.render('login.ejs')
+    }
+  })
+
+app.get('/signup', (req, res) => {
+  res.render('signup')
+})
+
+app.post('/signup', (req, res) => {
+  if(req.body.password === req.body.confirm) {
+    queries.addUser(req.body.name, req.body.email, req.body.password)
+      .then((data) => {
+        req.session.userid = data.id
+        res.redirect('/')
+      })
+  }
 })
 
 app.get('/history', (req, res) => {

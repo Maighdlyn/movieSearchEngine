@@ -7,7 +7,8 @@ body{
 
 h1{
   font-family: 'Poller One', sans-serif;
-  padding: 1em;
+  font-size: 3em;
+  padding: .5em;
   color: #0b2b81;
 }
 
@@ -32,7 +33,7 @@ form{
   align-items: center;
 }
 
-.submit{
+.orange-button{
   color: #0b2b81;
   background-color: #f59d16;
   padding: 1em;
@@ -52,7 +53,6 @@ form{
   background-color: #376ac5;
   border: 10px outset #f59d16;
   padding: 2em;
-
 }
 
 .orange-input{
