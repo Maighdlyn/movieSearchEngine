@@ -1,0 +1,35 @@
+<head>
+  <link rel='stylesheet' href='style.css'/>
+  <link href='https://fonts.googleapis.com/css?family=Poller+One|Source+Sans+Pro' rel='stylesheet'>
+</head>
+
+<body class='column'>
+  <div class='logout'>
+    <a href='/history'>history</a>
+    <a href='/logout'>logout</a>
+  </div>
+
+  <div>
+    <h1>Movie Search Engine</h1>
+
+    <form class='column' action='/home' method='post'>
+      <input type='text' name='search' class='search'/><br>
+      <input type='submit' name='submit' class='orange-button'/>
+    </form>
+  </div>
+
+  <div>
+    <%if (search[0]) {%>
+    <h2>You've searched for <%=title%></h2>
+    <%for(i=0; i<search.length; i++) {%>
+      <div class='row results'>
+        <img src='<%= search[i].img %>'/>
+        <!-- <p><%= search[i].img %></p> -->
+        <h2><%=search[i].name%></h2>
+        <h3><%=search[i].year%></h3>
+      </div>
+    <% } %>
+  <% } %>
+  </div>
+
+</body>

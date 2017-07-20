@@ -1,8 +1,28 @@
 <head>
   <link rel='stylesheet' href='style.css'/>
-  <link href="https://fonts.googleapis.com/css?family=Poller+One|Source+Sans+Pro" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Poller+One|Source+Sans+Pro' rel='stylesheet'>
 </head>
 
-<body>
-  <h1>Search History</h1>
+<body class='column'>
+
+  <div class='logout'>
+    <a href='/home'>home</a>
+    <a href='/logout'>logout</a>
+  </div>
+
+  <h1>History</h1>
+
+  <div>
+  <%if (true) {%>
+    <%for(i=0; i<history.length; i++) {%>
+      <div class='row results-orange'>
+        <h2><%= history[i].movie %>    </h2>
+        <h3><%= history[i].searchdate %></h3>
+      </div>
+    <% } %>
+  <% } else {%>
+    <h2> Your search history is empty </h2>
+  <% } %>
+  </div>
+
 </body>
