@@ -5,6 +5,7 @@ const queries = require('./database/queries.js')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const queryIMDB = require('./queryIMDB.js')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs')
@@ -13,7 +14,7 @@ app.use(cookieParser())
 app.use(session({
   secret: "Don't tell",
   cookie: {
-    maxAge: 30 * 60 * 1000 //30 minutes
+    maxAge: 60 * 60 * 1000 //one hour
   }
 }))
 
@@ -26,12 +27,45 @@ app.get('/', (req, res) =>
     }
   })
 
+app.post('/', (req, res) => {
+  queries.checkEmail(req.body.email)
+    .then((data) => {
+      if(data.password === req.body.password){
+        req.session.userid = data.id
+        res.redirect('/')
+      }
+    })
+})
+
+let searchTerm = {
+  title: '',
+  search: [],
+  img:''
+}
+
 app.get('/home', (req, res) => {
-  res.render('home.ejs')
+  if(req.session.userid){
+        res.render('home', searchTerm)
+  } else {
+    res.redirect('/')
+  }
+})
+
+app.post('/home', (req, res) => {
+  searchTerm.title = req.body.search
+  queryIMDB(searchTerm.title)
+    .then((data) => {
+      searchTerm.search = data.movies
+      searchTerm.img = data.img
+      res.redirect('/home')
+    })
 })
 
 app.get('/logout', (req, res) => {
   req.session.destroy()
+  searchTerm.title = ''
+  searchTerm.search = []
+  searchTerm.img = ''
   res.redirect('/')
 })
 
@@ -51,10 +85,6 @@ app.post('/signup', (req, res) => {
 
 app.get('/history', (req, res) => {
   res.render('searchHistory')
-})
-
-app.get('/results', (req, res) => {
-  res.render('searchResults')
 })
 
 const port = 3000

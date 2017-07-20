@@ -27,6 +27,12 @@ form{
   align-items: center;
 }
 
+.row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .orange-button{
   color: #0b2b81;
   background-color: #f59d16;
@@ -38,7 +44,7 @@ form{
 .search{
   width: 80%;
   padding: 1em;
-  border: 4px outset #f59d16;
+  border: 4px inset #f59d16;
   color: #0b2b81;
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -50,7 +56,7 @@ form{
 }
 
 .orange-input{
-  background-color: #f59d16;
+  background-color: white;
   border: 3px inset #f59d16;
   padding: 1em;
   margin: 1em;
@@ -60,4 +66,10 @@ form{
   position: absolute;
   right: 1em;
   top: 1em;
+}
+
+.results{
+    justify-content: space-around;
+    border: 5px inset #376ac5;
+    margin: 1em;
 }
