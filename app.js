@@ -53,6 +53,7 @@ app.get('/home', (req, res) => {
 
 app.post('/home', (req, res) => {
   searchTerm.title = req.body.search
+  queries.addToHistory(req.session.userid, searchTerm.title)
   queryIMDB(searchTerm.title)
     .then((data) => {
       searchTerm.search = data.movies
@@ -84,7 +85,20 @@ app.post('/signup', (req, res) => {
 })
 
 app.get('/history', (req, res) => {
-  res.render('searchHistory')
+  if(req.session.userid){
+    queries.historyById(req.session.userid)
+      .then((data) => {
+        res.render('searchHistory', {
+          history: data
+        })
+        console.log('line 93:', data)
+      })
+  } else {
+    res.redirect('/')
+  }
+
+
+
 })
 
 const port = 3000

@@ -5,11 +5,6 @@ const rp = require('request-promise')
 const express = require('express')
 const app = express()
 
-app.get('/api/search/:query', (req, res) => {
-  const query = req.params.query
-  queryIMDB(query)
-})
-
 function queryIMDB(search) {
 
   const options = {

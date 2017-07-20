@@ -73,3 +73,10 @@ form{
     border: 5px inset #376ac5;
     margin: 1em;
 }
+
+.results-orange{
+    justify-content: space-around;
+    border: 5px inset #f59d16;
+    padding: 1em;
+    margin: 1em;
+}

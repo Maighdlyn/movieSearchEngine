@@ -11,9 +11,12 @@ const queries = {
   checkEmail: (email) => {
     return db.one('SELECT * FROM users WHERE email=$1', [email])
   },
-  selectById: (id) => {
-    return db.one('SELECT * FROM users WHERE id=$1', [id])
-  }
+  historyById: (user_id) => {
+    return db.any('SELECT * FROM history WHERE user_id=$1', [user_id])
+  },
+  addToHistory: (user_id, movie) => {
+    return db.none('INSERT INTO history (user_id, movie) VALUES ($1, $2)', [user_id, movie])
+  },
 }
 
 module.exports = queries
