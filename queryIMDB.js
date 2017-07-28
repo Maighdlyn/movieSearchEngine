@@ -39,7 +39,6 @@ function queryIMDB(search) {
         movieObject.img = imgArray[i]
         output.movies.push(movieObject)
       }
-      console.log(output)
       return output
     })
     .catch(function (err) {
